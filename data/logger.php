@@ -4,9 +4,12 @@ $user = "enerdrone";
 $pass = "pOwerba11";
 $db = "enerdrone";
 
-$mysqli = mysqli_connect($server, $user, $pass, $db); //připojení k MySQL
+$mysqli = mysqli_connect($server, $user, $pass, $db);
 
-if($mysqli  and
+if($mysqli){
+
+    /*
+     *  and
     isset($_GET['land'])  and
     isset($_GET['charge'])  and
     isset($_GET['detect'])  and
@@ -14,8 +17,8 @@ if($mysqli  and
     isset($_GET['relayCharge']) and
     isset($_GET['relayMeasure']) and
     isset($_GET['temperature'])  and
-    isset($_GET['humidity'])){
-
+    isset($_GET['humidity'])
+     */
 
     $land = $_GET['land'];
     $charge = $_GET['charge'];
@@ -25,10 +28,10 @@ if($mysqli  and
     $relayMeasure = $_GET['relayMeasure'];
     $temperature = $_GET['temperature'];
     $humidity = $_GET['humidity'];
+    $chargingTime = $_GET['chargingTime'];
 
-
-    $sql = "INSERT INTO dp (land,charge,detect,current,realayCharge,relayMeasure,temperature,humidity)
-                    VALUES (".$land.",".$charge.",".$detect.",".$current.",".$relayCharge.",".$relayMeasure.",".$temperature.",".$humidity.")"; //sestavení SQL
+    $sql = "INSERT INTO dp (land,charge,detect,current,realayCharge,relayMeasure,temperature,humidity,chargingTime)
+                    VALUES (".$land.",".$charge.",".$detect.",".$current.",".$relayCharge.",".$relayMeasure.",".$temperature.",".$humidity.",".$chargingTime.")";
     $doSql = $mysqli->query($sql); //vykonání SQL
 
     if($doSql){ //test úspěchu
@@ -37,7 +40,6 @@ if($mysqli  and
     else{
         echo 'Něco se nepovedlo';
     }
-
 }
 else{
     echo "Neco je špatně";

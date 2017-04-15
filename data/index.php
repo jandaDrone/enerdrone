@@ -74,6 +74,18 @@
                     $('#tableContainer').html(response);
                 }
             });
+
+            $.ajax({
+                type: 'post',
+                url: 'displayData2.php',
+                data: {
+                    data:"data",
+                },
+                success: function (response) {
+                    // We get the element having id of display_info and put the response inside it
+                    $('#dataContainer2').html(response);
+                }
+            });
         }
     </script>
     </head>
@@ -82,12 +94,10 @@
             <div class="inner-wrapper">
                 <section role="main" class="content-body">
                     <div class="row">
-                        <div class="col-md-12 col-lg-12 col-xl-12">
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-6 col-xl-3">
-                            <section class="panel">
+                            <section class="panel" id="dataContainer2">
                                 <div class="panel-body bg-tertiary">
                                     <div class="widget-summary">
                                         <div class="widget-summary-col widget-summary-col-icon" >
@@ -97,9 +107,9 @@
                                         </div>
                                         <div class="widget-summary-col">
                                             <div class="summary">
-                                                <h5 class="title">Successful landing</h5>
+                                                <h5 class="title">Loading data...</h5>
                                                 <div class="info">
-                                                    <strong class="amount">Drone detected</strong>
+                                                    <strong class="amount">Please wait</strong>
                                                 </div>
                                             </div>
                                             <div class="summary-footer">
@@ -135,7 +145,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 col-xl-3" id="dataContainer">
                             <section class="panel">
-                                <div class="panel-body bg-primary">
+                                <div class="panel-body bg-tertiary">
                                     <div class="widget-summary">
                                         <div class="widget-summary-col widget-summary-col-icon" >
                                             <div class="summary-icon"  style="padding-top: 5px;">
@@ -149,21 +159,20 @@
                                                     <strong class="amount">Please wait</strong>
                                                 </div>
                                             </div>
-
+                                            <div class="summary-footer">
+                                                <p class="text-uppercase">(actual state)</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
                         </div>
-                        <div class="col-md-12 col-lg-6">
-
-                        </div>
+                        <div class="col-md-12 col-lg-6"></div>
                         <div class="col-md-12" id="tableContainer"></div>
                     </div>
                 </section>
             </div>
         </section>
-
         <script type="text/javascript">
                 setInterval(loaddata, 1000);
         </script>

@@ -12,14 +12,23 @@ if (isset($_POST['data'])) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-    $sql = "SELECT * FROM arduino ORDER BY time DESC limit 1";
-
+    $sql = "SELECT * FROM dp ORDER BY timestamp DESC limit 1";
 
     if ($result = mysqli_query($con, $sql)) {
         while ($row = mysqli_fetch_row($result)) {
-            echo '    <section class="panel">
-                                <div class="panel-body bg-secondary">
-                                    <div class="widget-summary">
+
+            echo '    <section class="panel">';
+            if ($row[2] == 0) {
+                echo '<div class="panel-body bg-tertiary">';
+            }else{
+                if ($row[6] == 1) {
+                    echo '<div class="panel-body bg-secondary">';
+                }else{
+                    echo '<div class="panel-body bg-tertiary">';
+                }
+            }
+
+            echo '<div class="widget-summary">
                                         <div class="widget-summary-col widget-summary-col-icon" >
                                             <div class="summary-icon"  style="padding-top: 5px;">
                                                 <i class="fa fa-power-off" style=" line-height: 2;"></i>
@@ -29,11 +38,17 @@ if (isset($_POST['data'])) {
                                             <div class="summary">
                                                 <h5 class="title">Process</h5>
                                                 <div class="info">';
-            if ($row[7] == true) {
-                echo '<strong class="amount">Charging...</strong>';
-            } else {
-                echo '<strong class="amount">Complete...</strong>';
+
+            if ($row[2] == 0) {
+                echo '<strong class="amount">Waiting...</strong>';
+            }else{
+                if ($row[6] == 1) {
+                    echo '<strong class="amount">Charging...</strong>';
+                }else{
+                    echo '<strong class="amount">Charging complete</strong>';
+                }
             }
+
             echo '</div>
                                             </div>
                                             <div class="summary-footer">
@@ -57,8 +72,8 @@ if (isset($_POST['data'])) {
                                                     <div class="summary">
                                                         <h4 class="title">Charging time:</h4>
                                                         <div class="info">
-                                                            <strong class="amount">00:08:21</strong>
-                                                        <span class="text-tertiary">hours</span>
+                                                            <strong class="amount">' . $row[10] . '</strong>
+                                                        <span class="text-tertiary">minutes</span>
                                                         </div>
                                                     </div>
                                                 </div>

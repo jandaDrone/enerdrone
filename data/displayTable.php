@@ -12,8 +12,7 @@ if (isset($_POST['data'])) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-    $sql = "SELECT * FROM arduino ORDER BY time DESC limit 10";
-
+    $sql = "SELECT * FROM dp ORDER BY timestamp DESC limit 25";
 
     if ($result = mysqli_query($con, $sql)) {
 
@@ -29,11 +28,15 @@ if (isset($_POST['data'])) {
                                             <tr>
                                                 <th>#</th>
                                                 <th>Time</th>
+                                                <th>Land</th>
+                                                <th>Charged</th>
+                                                <th>Detect</th>
+                                                <th>Current</th>
+                                                <th>Charging</th>
+                                                <th>Detection</th>
                                                 <th>Temperature</th>
                                                 <th>Humidity</th>
-                                                <th>Light</th>
-                                                <th>Current</th>
-                                                <th>Distance</th>
+                                                <th>Charging time</th>
                                             </tr>
                                             </thead>
                                             <tbody>';
@@ -46,8 +49,12 @@ if (isset($_POST['data'])) {
                                             <td>" . $rowD[2] . "</td>
                                             <td>" . $rowD[3] . "</td>
                                             <td>" . $rowD[4] . "</td>
-                                            <td>" . $rowD[5] / 10 . "</td>
+                                            <td>" . $rowD[5] . "</td>
                                             <td>" . $rowD[6] . "</td>
+                                            <td>" . $rowD[7] . "</td>
+                                            <td>" . $rowD[8] . "</td>
+                                            <td>" . $rowD[9] . "</td>
+                                            <td>" . $rowD[10] . "</td>
                                         </tr>";
         }
         echo '</tbody>

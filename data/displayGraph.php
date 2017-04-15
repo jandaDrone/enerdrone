@@ -16,19 +16,5 @@ if (isset($_POST['data'])) {
 
 
     if ($result = mysqli_query($con, $sql)) {
-//        echo'<section class="panel">
-//                                <header class="panel-heading">
-//                                    <h2 class="panel-title">Current chart</h2>
-//                                    <p class="panel-subtitle">Actual current waveform</p>
-//                                </header>
-//                                <div class="panel-body">
-//                                    <div class="chart chart-md" data-sales-rel="Enerdrone" id="flotDashSales1" class="chart-active"></div>
-//                                    <script>var flotDashSales1Data = [{data: [';
-//
-//        while ($row = mysqli_fetch_row($result)) {
-//            echo "['14:15',".$row[5] / 10 ."],";
-//        }
-//        echo'],color: "#2BAAB1"}]; </script> </div>
-//                            </section>';
     }
 }

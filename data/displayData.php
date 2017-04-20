@@ -93,7 +93,7 @@ if (isset($_POST['data'])) {
                                                     <div class="summary">
                                                         <h4 class="title">Temperature</h4>
                                                         <div class="info">
-                                                        <strong class="amount">' . $row[2] . '</strong>
+                                                        <strong class="amount">' . $row[8] . '</strong>
                                                         <span class="text-tertiary">%</span>
                                                         </div>
                                                     </div>
@@ -113,7 +113,7 @@ if (isset($_POST['data'])) {
                                                     <div class="summary">
                                                         <h4 class="title">Humidity</h4>
                                                         <div class="info">
-                                                        <strong class="amount">' . $row[3] . '</strong>
+                                                        <strong class="amount">' . $row[9] . '</strong>
                                                         <span class="text-tertiary">%</span>
                                                         </div>
                                                     </div>

@@ -49,6 +49,8 @@ if (isset($_POST['data'])) {
                 }
             }
 
+            $chargingTime = round($row[10]/60);
+
             echo '</div>
                                             </div>
                                             <div class="summary-footer">
@@ -72,7 +74,7 @@ if (isset($_POST['data'])) {
                                                     <div class="summary">
                                                         <h4 class="title">Charging time:</h4>
                                                         <div class="info">
-                                                            <strong class="amount">' . $row[10] . '</strong>
+                                                            <strong class="amount">' . $chargingTime . '</strong>
                                                         <span class="text-tertiary">minutes</span>
                                                         </div>
                                                     </div>

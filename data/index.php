@@ -33,13 +33,61 @@
     <!-- Head Libs -->
     <script src="assets/vendor/modernizr/modernizr.js"></script>
 
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" href="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API.
+        google.charts.load('visualization', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var jsonData = $.ajax({
+                url: "displayGraph.php",
+                dataType:"json",
+                async: false
+            }).responseText;
+
+            // Create our data table out of JSON data loaded from server.
+            var data = new google.visualization.DataTable(jsonData);
+
+            var options = {
+                curveType: 'function',
+                legend: 'none',
+                height: 300,
+                vAxis: { viewWindow: {
+                    min: 0,
+                    max: 5
+                },
+                    ticks: [0, 1, 2, 3, 4, 5], // display labels every 25
+                    title: "Current [A]"
+                },
+                hAxis: {
+                    title: "Time",
+                },
+                pointSize: 5,
+                chartArea: {width: '80%', height: '80%'},
+                colors: ['2baab1']
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+    </script>
+
     <script type="text/javascript">
 
         var values = [];
 
-        function loaddata()
-        {
-                $.ajax({
+        function loaddata(){
+
+            drawChart();
+            $.ajax({
                     type: 'post',
                     url: 'displayData.php',
                     data: {
@@ -124,23 +172,7 @@
                                     <h2 class="panel-title">Current chart</h2>
                                     <p class="panel-subtitle">Actual current waveform</p>
                                 </header>
-                                <div class="panel-body">
-                                    <div class="chart chart-md" data-sales-rel="Enerdrone" id="flotDashSales1" class="chart-active"></div>
-                                    <div id="graphContainer"><script>
-                                            var flotDashSales1Data = [{
-                                                data: [
-                                                    ["14:15", 0.5],
-                                                    ["14:16", 1.34],
-                                                    ["14:17", 2.32],
-                                                    ["14:18", 3.49],
-                                                    ["14:19", 3.79],
-                                                    ["14:20", 3.68],
-                                                    ["14:21", 3.9],
-                                                    ["14:22", 3.85]
-                                                ],
-                                                color: "#2BAAB1"
-                                            }]; </script></div>
-                                </div>
+                                <div class="panel-body" id="chart_div"></div>
                             </section>
                         </div>
                         <div class="col-md-12 col-lg-6 col-xl-3" id="dataContainer">
@@ -192,11 +224,7 @@
         <script src="assets/vendor/jquery-appear/jquery.appear.js"></script>
         <script src="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
         <script src="assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.js"></script>
-        <script src="assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.pie.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.categories.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.resize.js"></script>
+
         <script src="assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
         <script src="assets/vendor/raphael/raphael.js"></script>
         <script src="assets/vendor/morris/morris.js"></script>
@@ -221,10 +249,5 @@
 
         <!-- Theme Initialization Files -->
         <script src="assets/javascripts/theme.init.js"></script>
-
-        <!-- Examples -->
-        <script src="assets/javascripts/dashboard/examples.dashboard.js"></script>
-            <script src="assets/javascripts/ui-elements/examples.charts.js"></script>
-            <script src="assets/javascripts/ui-elements/examples.widgets.js"></script>
     </body>
 </html>

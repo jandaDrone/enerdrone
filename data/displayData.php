@@ -119,6 +119,28 @@ if (isset($_POST['data'])) {
                                             </div>
                                         </div>
                                     </section>
+                                    <section class="panel panel-featured-left panel-featured-tertiary">
+                                        <div class="panel-body">
+                                            <div class="widget-summary widget-summary-sm">
+                                                <div class="widget-summary-col widget-summary-col-icon">
+                                                    <div class="summary-icon bg-tertiary" style="padding-top: 13px;">
+                                                        <i class="fa fa-download"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="widget-summary-col">
+                                                    <div class="summary">
+                                                        <h4 class="title">Download charging logs</h4>
+                                                        <div class="info">
+                                                        <strong class="amount"><a style="color: #2baab1; font-size: 14px;" href="chargingLog.php?last24">Last 24 hours logs</a></strong>
+                                                        <strong class="amount" style="color: #343434; font-size: 14px;">or</strong>
+                                                        
+                                                        <strong class="amount"><a style="color: #2baab1; font-size: 14px;" href="chargingLog.php">complete logs</a></strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
                             </section>';
 
